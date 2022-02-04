@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.stengg.onvif</groupId>
+    <artifactId>onvif</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>Camera Onvif Service for CVMS</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+        <cxf.version>3.3.2</cxf.version><!-- 3.1.10 -->
+        <checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
+        <javax.activation.version>1.2.0</javax.activation.version>
+        <jaxb.api.version>2.3.1</jaxb.api.version><!-- 2.3.0,  2.3.1 or 2.4.0-b180830.0359 -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>onvif-java</module>
+        <module>onvif-service</module>
+        <module>onvif-ws-client</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <jdkToolchain>
+                        <version>${java.release}</version>
+                    </jdkToolchain>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-maven-plugin.version}</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-maven-plugin.version}</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
